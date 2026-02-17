@@ -11,6 +11,8 @@ import { ProcessorHealth } from "@/components/dashboard/processor-health"
 import { AiBrief } from "@/components/dashboard/ai-brief"
 import { MerchantChat } from "@/components/dashboard/merchant-chat"
 import { MerchantTable } from "@/components/dashboard/merchant-table"
+import { ProcessingOptimization } from "@/components/dashboard/processing-optimization"
+import { ProcessorHealthMatrix } from "@/components/dashboard/processor-health-matrix"
 import { OnboardingRadar } from "@/components/dashboard/onboarding-radar"
 import { ComplianceFooter } from "@/components/dashboard/compliance-footer"
 import { Bell, ShieldCheck } from "lucide-react"
@@ -102,7 +104,12 @@ export default function DashboardPage() {
               <MerchantTable />
             </section>
 
-            {/* Processor Health + Merchant Chat */}
+            {/* Processing Optimization */}
+            <section aria-label="Processing optimization">
+              <ProcessingOptimization />
+            </section>
+
+            {/* Portfolio Success Rate + Merchant Chat */}
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
               <section aria-label="Portfolio success rate">
                 <ProcessorHealth />
@@ -111,6 +118,11 @@ export default function DashboardPage() {
                 <MerchantChat />
               </section>
             </div>
+
+            {/* Processor Health Matrix */}
+            <section id="processor-health-matrix" aria-label="Processor health matrix">
+              <ProcessorHealthMatrix />
+            </section>
 
             {/* Onboarding Radar */}
             <section aria-label="Onboarding radar - fraud prevention">

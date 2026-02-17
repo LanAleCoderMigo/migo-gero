@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { BrainCircuit, RefreshCw } from "lucide-react"
+import { RefreshCw } from "lucide-react"
+import Image from "next/image"
+import { AiText } from "@/components/ui/ai-text"
 
 export function AiBrief() {
   const [brief, setBrief] = useState("")
@@ -73,7 +75,7 @@ export function AiBrief() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <BrainCircuit className="h-5 w-5 text-primary" />
+            <Image src="/lume-logo.jpg" alt="LUME" width={80} height={32} className="rounded" />
             <CardTitle className="text-card-foreground">AI Executive Brief</CardTitle>
           </div>
           <Button
@@ -101,10 +103,10 @@ export function AiBrief() {
             </div>
             <span className="text-xs text-muted-foreground">
               {loading
-                ? "Migo AI — Generando brief..."
+                ? "LUME AI — Generando brief..."
                 : generatedAt
-                  ? `Migo AI — Generado: ${generatedAt}`
-                  : "Migo AI — Listo"}
+                  ? `LUME AI — Generado: ${generatedAt}`
+                  : "LUME AI — Listo"}
             </span>
           </div>
 
@@ -135,12 +137,12 @@ export function AiBrief() {
                 <Skeleton className="h-4 w-[60%]" />
               </div>
             ) : (
-              <p className="text-sm leading-relaxed text-muted-foreground whitespace-pre-wrap">
-                {brief}
+              <div>
+                <AiText>{brief}</AiText>
                 {loading && (
                   <span className="inline-block w-2 h-4 ml-0.5 bg-primary/60 animate-pulse align-text-bottom" />
                 )}
-              </p>
+              </div>
             )}
           </div>
         </div>

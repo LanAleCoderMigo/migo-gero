@@ -19,8 +19,10 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Badge } from "@/components/ui/badge"
-import { MessageSquare, Send, Sparkles, User, Bot } from "lucide-react"
+import { MessageSquare, Send, Sparkles, User } from "lucide-react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { AiText } from "@/components/ui/ai-text"
 import { CLIENTS_DATA } from "@/lib/data/merchants"
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -268,7 +270,7 @@ export function MerchantChat() {
     <Card className="border-border/60 bg-card flex flex-col">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <MessageSquare className="h-5 w-5 text-primary" />
+          <Image src="/lume-logo.jpg" alt="LUME" width={80} height={32} className="rounded" />
           <CardTitle className="text-card-foreground">Merchant Chat</CardTitle>
         </div>
         <CardDescription>
@@ -318,20 +320,15 @@ export function MerchantChat() {
                   )}
                 >
                   {/* Avatar */}
-                  <div
-                    className={cn(
-                      "flex h-7 w-7 shrink-0 items-center justify-center rounded-full",
-                      msg.role === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary border border-border/60"
-                    )}
-                  >
-                    {msg.role === "user" ? (
-                      <User className="h-3.5 w-3.5" />
-                    ) : (
-                      <Bot className="h-3.5 w-3.5 text-primary" />
-                    )}
-                  </div>
+                  {msg.role === "user" ? (
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <User className="h-4 w-4" />
+                    </div>
+                  ) : (
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1e2a3a] border border-border/40 overflow-hidden p-1">
+                      <Image src="/lume-logo.jpg" alt="LUME" width={24} height={10} className="object-contain" />
+                    </div>
+                  )}
 
                   {/* Bubble */}
                   <div
@@ -351,14 +348,18 @@ export function MerchantChat() {
                         <Skeleton className="h-3 w-40" />
                       </div>
                     ) : (
-                      <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                        {msg.content}
+                      <div>
+                        {msg.role === "assistant" ? (
+                          <AiText>{msg.content}</AiText>
+                        ) : (
+                          <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+                        )}
                         {msg.role === "assistant" &&
                           loading &&
                           i === messages.length - 1 && (
                             <span className="inline-block w-1.5 h-4 ml-0.5 bg-primary/60 animate-pulse align-text-bottom" />
                           )}
-                      </p>
+                      </div>
                     )}
                   </div>
                 </div>

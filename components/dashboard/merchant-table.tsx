@@ -37,7 +37,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 import {
   Search,
   Store,
-  Sparkles,
   Activity,
   DollarSign,
   CheckCircle2,
@@ -46,7 +45,9 @@ import {
   Radio,
   CreditCard,
 } from "lucide-react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { AiText } from "@/components/ui/ai-text"
 import {
   CLIENTS_DATA,
   TX_DATA,
@@ -316,7 +317,7 @@ function MerchantDetail({ row }: { row: MerchantRow }) {
       <div className="flex flex-col gap-3 rounded-lg border border-border/50 bg-secondary/20 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-primary" />
+            <Image src="/lume-logo.jpg" alt="LUME" width={64} height={26} className="rounded" />
             <span className="text-xs font-semibold text-card-foreground">
               AI Executive Brief
             </span>
@@ -354,12 +355,12 @@ function MerchantDetail({ row }: { row: MerchantRow }) {
         )}
 
         {brief && (
-          <p className="text-sm leading-relaxed text-muted-foreground whitespace-pre-wrap">
-            {brief}
+          <div>
+            <AiText>{brief}</AiText>
             {briefLoading && (
               <span className="inline-block w-1.5 h-4 ml-0.5 bg-primary/60 animate-pulse align-text-bottom" />
             )}
-          </p>
+          </div>
         )}
       </div>
     </div>
